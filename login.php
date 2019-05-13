@@ -1,3 +1,25 @@
+<?php
+if($_POST) {
+  $host = "localhost";
+  $user = "root";
+  $pass = "";
+  $db = "login";
+
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+
+  $conn = mysqli_connect($host, $user, $pass, $db);
+  $query = "SELECT * from user where username='$username' and password='$password'";
+  $result = mysqli_query($conn, $query);
+  if(mysqli_num_rows($result)==1) {
+    session_start();
+    $_SESSION['login'] = 'true';
+    header('location: index.html');
+  } else {
+    echo '<script>alert("Wrong user and password!");</script>';
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -346,11 +368,11 @@
               <div class="col-md-6">
                 <div class="aa-myaccount-login">
                 <h4>Login</h4>
-                 <form action="" class="aa-login-form">
+                 <form action="login.php" method="POST" class="aa-login-form">
                   <label for="">Username or Email address<span>*</span></label>
-                   <input type="text" placeholder="Username or email">
+                   <input name="username" type="text" placeholder="Username or email">
                    <label for="">Password<span>*</span></label>
-                    <input type="password" placeholder="Password">
+                    <input name="password" type="password" placeholder="Password">
                     <button type="submit" class="aa-browse-btn">Login</button>
                     <label class="rememberme" for="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
                     <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
@@ -360,11 +382,11 @@
               <div class="col-md-6">
                 <div class="aa-myaccount-register">                 
                  <h4>Register</h4>
-                 <form action="" class="aa-login-form">
+                 <form action="register.php" method="POST" class="aa-login-form">
                     <label for="">Username or Email address<span>*</span></label>
-                    <input type="text" placeholder="Username or email">
+                    <input type="text" placeholder="Username or email" name="username">
                     <label for="">Password<span>*</span></label>
-                    <input type="password" placeholder="Password">
+                    <input type="password" placeholder="Password" name="password">
                     <button type="submit" class="aa-browse-btn">Register</button>                    
                   </form>
                 </div>
