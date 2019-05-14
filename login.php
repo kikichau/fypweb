@@ -3,13 +3,13 @@ if($_POST) {
   $host = "localhost";
   $user = "root";
   $pass = "";
-  $db = "login";
+  $db = "fypweb";
 
   $username = $_POST['username'];
   $password = $_POST['password'];
 
   $conn = mysqli_connect($host, $user, $pass, $db);
-  $query = "SELECT * from user where username='$username' and password='$password'";
+  $query = "SELECT * from users where username='$username' and password='$password'";
   $result = mysqli_query($conn, $query);
   if(mysqli_num_rows($result)==1) {
     session_start();
