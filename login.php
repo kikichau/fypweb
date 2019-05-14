@@ -13,7 +13,7 @@ if($_POST) {
   $result = mysqli_query($conn, $query);
   if(mysqli_num_rows($result)==1) {
     session_start();
-    $_SESSION['login'] = 'true';
+    $_SESSION['fypweb'] = 'true';
     header('location: index.html');
   } else {
     header('location: error_user.html');
