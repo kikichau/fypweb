@@ -1,24 +1,22 @@
 <?php
 
-session_start();
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "login";
 
-$con = mysql_connect('localhost', 'root', '');
+$conn = mysqli_connect($host, $user, $pass, $db) Or DIE ("Unable to connect db");
 
-mysqli_select_db($con, 'login');
+if(isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-$username = $_POST['username'];
-$password = $_POST['password'];
-
-$sql = "select * from user where name = '$username'";
-
-$result = mysqli_query($con, $sql);
-
-$num = mysql_num_rows($result);
-
-if($num == 1) {
-    echo "Username alreadly taken";
-} else {
-    $reg = "insert into user (username, password) values ('$username', '$password')";
-    mysqli_query($con, $reg);
-    echo "Registration Successful";
+    $sql = "INSERT INTO user (username, password) VALUES ('$username', '$password')";
+    if($conn->query($sql) === TRUE) {
+        header('location: success_user.html');
+    } else {
+        header('location: error_user.html');
+    }
+    $conn->close();
 }
+?>
