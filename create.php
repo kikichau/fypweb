@@ -14,9 +14,8 @@ if (isset($_POST['submit'])) {
     $whatsapp = $_POST['whatsapp'];
     $contact = $_POST['contact'];
     $email = $_POST['email'];
-    $picture = $_POST['picture'];
 
-    $sql = "INSERT INTO animals (date, name_title, type, species, gender, age, basic_ifmt, other_ifmt, name, whatsapp, contact, email, picture) VALUES ('$date', '$name_title', '$type', '$species', '$gender', '$age', '$basic_ifmt', '$other_ifmt', '$name', '$whatsapp', '$contact', '$email', '$picture')";
+    $sql = "INSERT INTO animals (date, name_title, type, species, gender, age, basic_ifmt, other_ifmt, name, whatsapp, contact, email) VALUES ('$date', '$name_title', '$type', '$species', '$gender', '$age', '$basic_ifmt', '$other_ifmt', '$name', '$whatsapp', '$contact', '$email')";
     if($mysqli->query($sql) === TRUE) {
         header('location: success_animal.html');
     } else {
