@@ -2,7 +2,6 @@
 session_start();
 
 $mysqli = new mysqli('localhost', 'root', '', 'fypweb') or die (mysqli_error($mysqli));
-
 $data = '';
 
 if (isset($_GET['read'])) {
@@ -31,7 +30,7 @@ if (isset($_GET['read'])) {
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Animals LOVE | Animal Detail</title>
+  <title>Animals LOVE | Animal Detail Page</title>
 
   <!-- Font awesome -->
   <link href="css/font-awesome.css" rel="stylesheet">
@@ -348,11 +347,11 @@ if (isset($_GET['read'])) {
 
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
-    <img src="img/slider/1920300.jpg" alt="fashion img">
+    <img src="img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
     <div class="aa-catg-head-banner-area">
       <div class="container">
         <div class="aa-catg-head-banner-content">
-          <h2>Animal Detail</h2>
+          <h2>Animal Detail Page</h2>
           <ol class="breadcrumb">
             <li><a href="index.php">Home</a></li>
             <li class="active">Animal Detail</li>
