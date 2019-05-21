@@ -1,5 +1,8 @@
 <?php 
-session_start();
+include('session.php'); 
+if(!isset($_SESSION['login_user'])){ 
+  header("location: index.php"); // Redirecting To Home Page 
+}
 
 $mysqli = new mysqli('localhost', 'root', '', 'fypweb') or die (mysqli_error($mysqli));
 
@@ -106,9 +109,9 @@ if (isset($_GET['read'])) {
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
                   <li><a href="login.html">Login</a></li>
-                  <li><a href="create.html">Create animals</a></li>
-                  <li class="hidden-xs"><a href="your_animals.php?read=<?php echo $username; ?>">Your animals</a></li>
-                  <li class="hidden-xs"><a href="message.php?read=<?php echo $username; ?>">Message</a></li>
+                  <li><a href="create.php">Create animals</a></li>
+                  <li class="hidden-xs"><a href="your_animals.php?read=<?php echo $login_session; ?>">Your animals</a></li>
+                  <li class="hidden-xs"><a href="message.php?read=<?php echo $login_session; ?>">Message</a></li>
                   <li class="hidden-xs"><a href="logout.php">Logout</a></li>
                 </ul>
               </div>
@@ -433,7 +436,7 @@ if (isset($_GET['read'])) {
                     <h3>Main Menu</h3>
                     <ul class="aa-footer-nav">
                       <li><a href="index.php">Home</a></li>
-                      <li><a href="create.html">Create animals</a></li>
+                      <li><a href="create.php">Create animals</a></li>
                       <li><a href="terms.html">Terms And Privacy</a></li>
                       <li><a href="contact.html">Contact Us</a></li>
                     </ul>
@@ -472,7 +475,7 @@ if (isset($_GET['read'])) {
                       <address>
                         <p> 25 Astor Pl, NY 10003, USA</p>
                         <p><span class="fa fa-phone"></span>+852-6732-6697</p>
-                        <p><span class="fa fa-envelope"></span>kikichau03@gmail.com</p>
+                        <p><span class="fa fa-envelope"></span>187109450@stu.vtc.edu.hk</p>
                       </address>
                       <div class="aa-footer-social">
                         <a href="#"><span class="fa fa-facebook"></span></a>

@@ -1,6 +1,6 @@
 <?php
-session_start();
-session_unset();
-session_destroy();
-header('location: login.html')
+session_start(); 
+if(session_destroy()) {// Destroying All Sessions { 
+	header("Location: login.html"); // Redirecting To Home Page 
+}
 ?>

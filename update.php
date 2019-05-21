@@ -21,6 +21,6 @@ if (isset($_POST['update'])) {
   $email = $_POST['email'];
 
   $mysqli->query("UPDATE animals SET date='$date', name_title='$name_title', type='$type', species='$species', gender='$gender', age='$age', basic_ifmt='$basic_ifmt', other_ifmt='$other_ifmt', username='$username', name='$name', whatsapp='$whatsapp', contact='$contact', email='$email' WHERE id=$id ") or die ($mysqli->error);
-  header('location: your_animals.php?read=<?php echo $username; ?>');
+  header('location: your_animals.php?read=<?php echo $login_session; ?>');
 }
 ?>

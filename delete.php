@@ -7,6 +7,6 @@ if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $mysqli->query("DELETE FROM animals WHERE id=$id") or die ($mysqli->error());
 
-    header("location: your_animals.php?read=<?php echo $username; ?>");
+    header("location: your_animals.php?read=<?php echo $login_session; ?>");
 }
 ?>
