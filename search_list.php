@@ -1,18 +1,16 @@
-<?php
-if(isset($_POST['search'])) {
-  $valueToSearch = $_POST['valueToSearch'];
-  $query = "SELECT * FROM 'animals' WHERE CONCAT(`name_title`, `species`, `gender`, `age`) LIKE '%". $valueToSearch."%'";
-  $search_result = filterTable($query);
-} else {
-  $query = "SELECT * FROM 'animals'";
-  $search_result = filterTable($query);
+<?php 
+include('session.php'); 
+if(!isset($_SESSION['login_user'])){ 
+  header("location: index.php"); // Redirecting To Home Page 
 }
-function filterTable($query) {
-  $connect = mysqli_connect("localhost", "root", "", "fypweb");
-  $filter_Result = mysqli_query($connect, $query);
-  return $filter_Result;
-}
-?>
+
+$mysqli = new mysqli('localhost', 'root', '', 'fypweb') or die (mysqli_error($mysqli));
+
+if (isset($_GET['read'])) {
+    $search = $_GET['read'];
+    $result = $mysqli->query("SELECT * FROM `animals` WHERE CONCAT (`name_title`, `type`, `species`) LIKE '%".$search."%'")
+    or die ($mysqli->error);
+}?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,7 +94,6 @@ function filterTable($query) {
                   <li><a href="login.html">Login</a></li>
                   <li><a href="create.php">Create animals</a></li>
                   <li class="hidden-xs"><a href="your_animals.php?read=<?php echo $login_session; ?>">Your animals</a></li>
-                  <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
                   <li class="hidden-xs"><a href="message.php?read=<?php echo $login_session; ?>">Message</a></li>
                   <li class="hidden-xs"><a href="logout.php">Logout</a></li>
                 </ul>
@@ -122,14 +119,14 @@ function filterTable($query) {
                   <p>Animals<strong>LOVE</strong> <span>Your Animals Home</span></p>
                 </a>
                 <!-- img based logo -->
-                <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
+                <!-- <a href="index.php"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
               <!-- / logo  -->
               <!-- search box -->
               <div class="aa-search-box">
-                <form action="search.php" method="post">
+                <form action="search_list.php" method="post">
                   <input type="text" name="valueToSearch" id="valueToSearch" placeholder="Search here ex. 'cat' ">
-                  <button type="submit" name="search"><span class="fa fa-search"></span></button>
+                  <button type="submit"><span class="fa fa-search"></span></button>
                 </form>
               </div>
               <!-- / search box -->
@@ -159,32 +156,32 @@ function filterTable($query) {
             <!-- Left nav -->
             <ul class="nav navbar-nav">
               <li><a href="index.php">Animals LOVE</a></li>
-              <li><a href="#">Dog <span class="caret"></span></a>
+              <li><a href="search_list.php?read=Dog">Dog <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Siberian</a></li>
-                  <li><a href="#">Dachshund</a></li>
-                  <li><a href="#">Australian Shepherd</a></li>
-                  <li><a href="#">Shih Tzu</a></li>
-                  <li><a href="#">Alaskan</a></li>
-                  <li><a href="#">Irish wolfhound</a></li>
-                  <li><a href="#">Other</a></li>
+                  <li><a href="search_list.php?read=Siberian">Siberian</a></li>
+                  <li><a href="search_list.php?read=Dachshund">Dachshund</a></li>
+                  <li><a href="search_list.php?read=Australian Shepherd">Australian Shepherd</a></li>
+                  <li><a href="search_list.php?read=Shih Tzu">Shih Tzu</a></li>
+                  <li><a href="search_list.php?read=Alaskan">Alaskan</a></li>
+                  <li><a href="search_list.php?read=Irish wolfhound">Irish wolfhound</a></li>
+                  <li><a href="search_list.php?read=Dog-Other">Other</a></li>
                 </ul>
               </li>
-              <li><a href="#">Cat <span class="caret"></span></a>
+              <li><a href="search_list.php?read=Cat">Cat <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Russian Blue</a></li>
-                  <li><a href="#">Persian cat</a></li>
-                  <li><a href="#">Scottish Fold</a></li>
-                  <li><a href="#">Siamese cat</a></li>
-                  <li><a href="#">Ragdoll</a></li>
-                  <li><a href="#">Maina Coon</a></li>
-                  <li><a href="#">Other</a></li>
+                  <li><a href="search_list.php?read=Russian Blue">Russian Blue</a></li>
+                  <li><a href="search_list.php?read=Persian cat">Persian cat</a></li>
+                  <li><a href="search_list.php?read=Scottish Fold">Scottish Fold</a></li>
+                  <li><a href="search_list.php?read=Siamese cat">Siamese cat</a></li>
+                  <li><a href="search_list.php?read=Ragdoll">Ragdoll</a></li>
+                  <li><a href="search_list.php?read=Maina Coon">Maina Coon</a></li>
+                  <li><a href="search_list.php?read=Cat-Other">Other</a></li>
                 </ul>
               </li>
-              <li><a href="#">Rabbit</a></li>
-              <li><a href="#">Rodents</a></li>
-              <li><a href="#">Tortoise</span></a></li>
-              <li><a href="#">Other</a></li>
+              <li><a href="search_list.php?read=Rabbit">Rabbit</a></li>
+              <li><a href="search_list.php?read=Rodents">Rodents</a></li>
+              <li><a href="search_list.php?read=Tortoise">Tortoise</span></a></li>
+              <li><a href="search_list.php?read=Other-Other">Other</a></li>
             </ul>
           </div>
           <!--/.nav-collapse -->
@@ -279,7 +276,7 @@ function filterTable($query) {
                     <ul class="aa-product-catg">
                       <!-- start single product item -->
                       <?php
-                        while ($row = mysqli_fetch_array($search_result)): ?>
+                        while ($row = $result->fetch_assoc()): ?>
                       <li>
                         <figure>
                           <a class="aa-product-img" href="detail.php?read=<?php echo $row['id']; ?>"><img
@@ -347,7 +344,7 @@ function filterTable($query) {
         <div class="col-md-12">
           <div class="aa-subscribe-area">
             <h3>Subscribe our newsletter </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, velit!</p>
+            <p>If you want to know the latest news, please subscribe!</p>
             <form action="" class="aa-subscribe-form">
               <input type="email" name="" id="" placeholder="Enter your Email">
               <input type="submit" value="Subscribe">
@@ -374,7 +371,7 @@ function filterTable($query) {
                     <ul class="aa-footer-nav">
                       <li><a href="index.php">Home</a></li>
                       <li><a href="create.php">Create animals</a></li>
-                      <li><a href="#">Terms And Privacy</a></li>
+                      <li><a href="terms.html">Terms And Privacy</a></li>
                       <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                   </div>

@@ -137,7 +137,7 @@ if (isset($_GET['read'])) {
               <!-- / logo  -->
               <!-- search box -->
               <div class="aa-search-box">
-                <form action="search.php" method="post">
+                <form action="search_list.php" method="post">
                   <input type="text" name="valueToSearch" id="valueToSearch" placeholder="Search here ex. 'cat' ">
                   <button type="submit"><span class="fa fa-search"></span></button>
                 </form>
@@ -169,32 +169,32 @@ if (isset($_GET['read'])) {
             <!-- Left nav -->
             <ul class="nav navbar-nav">
               <li><a href="index.php">Animals LOVE</a></li>
-              <li><a href="#">Dog <span class="caret"></span></a>
+              <li><a href="search_list.php?read=Dog">Dog <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Siberian</a></li>
-                  <li><a href="#">Dachshund</a></li>
-                  <li><a href="#">Australian Shepherd</a></li>
-                  <li><a href="#">Shih Tzu</a></li>
-                  <li><a href="#">Alaskan</a></li>
-                  <li><a href="#">Irish wolfhound</a></li>
-                  <li><a href="#">Other</a></li>
+                  <li><a href="search_list.php?read=Siberian">Siberian</a></li>
+                  <li><a href="search_list.php?read=Dachshund">Dachshund</a></li>
+                  <li><a href="search_list.php?read=Australian Shepherd">Australian Shepherd</a></li>
+                  <li><a href="search_list.php?read=Shih Tzu">Shih Tzu</a></li>
+                  <li><a href="search_list.php?read=Alaskan">Alaskan</a></li>
+                  <li><a href="search_list.php?read=Irish wolfhound">Irish wolfhound</a></li>
+                  <li><a href="search_list.php?read=Dog-Other">Other</a></li>
                 </ul>
               </li>
-              <li><a href="#">Cat <span class="caret"></span></a>
+              <li><a href="search_list.php?read=Cat">Cat <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Russian Blue</a></li>
-                  <li><a href="#">Persian cat</a></li>
-                  <li><a href="#">Scottish Fold</a></li>
-                  <li><a href="#">Siamese cat</a></li>
-                  <li><a href="#">Ragdoll</a></li>
-                  <li><a href="#">Maina Coon</a></li>
-                  <li><a href="#">Other</a></li>
+                  <li><a href="search_list.php?read=Russian Blue">Russian Blue</a></li>
+                  <li><a href="search_list.php?read=Persian cat">Persian cat</a></li>
+                  <li><a href="search_list.php?read=Scottish Fold">Scottish Fold</a></li>
+                  <li><a href="search_list.php?read=Siamese cat">Siamese cat</a></li>
+                  <li><a href="search_list.php?read=Ragdoll">Ragdoll</a></li>
+                  <li><a href="search_list.php?read=Maina Coon">Maina Coon</a></li>
+                  <li><a href="search_list.php?read=Cat-Other">Other</a></li>
                 </ul>
               </li>
-              <li><a href="#">Rabbit</a></li>
-              <li><a href="#">Rodents</a></li>
-              <li><a href="#">Tortoise</span></a></li>
-              <li><a href="#">Other</a></li>
+              <li><a href="search_list.php?read=Rabbit">Rabbit</a></li>
+              <li><a href="search_list.php?read=Rodents">Rodents</a></li>
+              <li><a href="search_list.php?read=Tortoise">Tortoise</span></a></li>
+              <li><a href="search_list.php?read=Other-Other">Other</a></li>
             </ul>
           </div>
           <!--/.nav-collapse -->
@@ -314,8 +314,9 @@ if (isset($_GET['read'])) {
                       </div>
                       <input type="hidden" name="username" value="<?php echo $username?>">
                       <div class="form-group">
-                        <label for="name">Username</label>
-                        <input type="text" class="form-control" name="send_user" placeholder="Username">
+                        <label for="name">Username: </label>
+                        <?php echo $login_session ?>
+                        <input type="hidden" class="form-control" name="send_user" value="<?php echo $login_session ?>">
                       </div>
 
                       <button name="send" type="submit" class="btn btn-default aa-review-submit">Send</button>

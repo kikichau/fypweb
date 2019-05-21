@@ -141,7 +141,7 @@ if (isset($_GET['read'])) {
               <!-- / logo  -->
               <!-- search box -->
               <div class="aa-search-box">
-                <form action="search.php" method="post">
+                <form action="search_list.php" method="post">
                   <input type="text" name="valueToSearch" id="valueToSearch" placeholder="Search here ex. 'cat' ">
                   <button type="submit"><span class="fa fa-search"></span></button>
                 </form>
@@ -174,32 +174,32 @@ if (isset($_GET['read'])) {
             <!-- Left nav -->
             <ul class="nav navbar-nav">
               <li><a href="index.php">Animals LOVE</a></li>
-              <li><a href="#">Dog <span class="caret"></span></a>
+              <li><a href="search_list.php?read=Dog">Dog <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Siberian</a></li>
-                  <li><a href="#">Dachshund</a></li>
-                  <li><a href="#">Australian Shepherd</a></li>
-                  <li><a href="#">Shih Tzu</a></li>
-                  <li><a href="#">Alaskan</a></li>
-                  <li><a href="#">Irish wolfhound</a></li>
-                  <li><a href="#">Other</a></li>
+                  <li><a href="search_list.php?read=Siberian">Siberian</a></li>
+                  <li><a href="search_list.php?read=Dachshund">Dachshund</a></li>
+                  <li><a href="search_list.php?read=Australian Shepherd">Australian Shepherd</a></li>
+                  <li><a href="search_list.php?read=Shih Tzu">Shih Tzu</a></li>
+                  <li><a href="search_list.php?read=Alaskan">Alaskan</a></li>
+                  <li><a href="search_list.php?read=Irish wolfhound">Irish wolfhound</a></li>
+                  <li><a href="search_list.php?read=Dog-Other">Other</a></li>
                 </ul>
               </li>
-              <li><a href="#">Cat <span class="caret"></span></a>
+              <li><a href="search_list.php?read=Cat">Cat <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Russian Blue</a></li>
-                  <li><a href="#">Persian cat</a></li>
-                  <li><a href="#">Scottish Fold</a></li>
-                  <li><a href="#">Siamese cat</a></li>
-                  <li><a href="#">Ragdoll</a></li>
-                  <li><a href="#">Maina Coon</a></li>
-                  <li><a href="#">Other</a></li>
+                  <li><a href="search_list.php?read=Russian Blue">Russian Blue</a></li>
+                  <li><a href="search_list.php?read=Persian cat">Persian cat</a></li>
+                  <li><a href="search_list.php?read=Scottish Fold">Scottish Fold</a></li>
+                  <li><a href="search_list.php?read=Siamese cat">Siamese cat</a></li>
+                  <li><a href="search_list.php?read=Ragdoll">Ragdoll</a></li>
+                  <li><a href="search_list.php?read=Maina Coon">Maina Coon</a></li>
+                  <li><a href="search_list.php?read=Cat-Other">Other</a></li>
                 </ul>
               </li>
-              <li><a href="#">Rabbit</a></li>
-              <li><a href="#">Rodents</a></li>
-              <li><a href="#">Tortoise</span></a></li>
-              <li><a href="#">Other</a></li>
+              <li><a href="search_list.php?read=Rabbit">Rabbit</a></li>
+              <li><a href="search_list.php?read=Rodents">Rodents</a></li>
+              <li><a href="search_list.php?read=Tortoise">Tortoise</span></a></li>
+              <li><a href="search_list.php?read=Other-Other">Other</a></li>
             </ul>
           </div>
           <!--/.nav-collapse -->
@@ -364,15 +364,9 @@ if (isset($_GET['read'])) {
                           <div class="panel-body">
                             <div class="row">
                               <div class="col-md-6">
+                              <input name="username" type="hidden" value="<?php echo $login_session; ?>" required>
                                 <div class="aa-checkout-single-bill">
-                                  <input name="username" type="text" value="<?php echo $username ?>"
-                                    placeholder="User Name*" required>
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="aa-checkout-single-bill">
-                                  <input name="name" type="text" value="<?php echo $name ?>" placeholder="Name*"
-                                    required>
+                                  <input name="name" type="text" value="<?php echo $name ?>" placeholder="Name*" required>
                                 </div>
                               </div>
                               <div class="col-md-6">
