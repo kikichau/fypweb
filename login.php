@@ -1,4 +1,5 @@
 <?php
+
 if($_POST) {
   $host = "localhost";
   $user = "root";
@@ -13,7 +14,7 @@ if($_POST) {
   $result = mysqli_query($conn, $query);
   if(mysqli_num_rows($result)==1) {
     session_start();
-    $_SESSION['fypweb'] = 'true';
+    $_SESSION['auth'] = 'true';
     header('location: index.php');
   } else {
     header('location: error_user.html');
