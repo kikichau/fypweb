@@ -16,6 +16,7 @@ if (isset($_GET['read'])) {
         $age = $row['age'];
         $basic_ifmt = $row['basic_ifmt'];
         $other_ifmt = $row['other_ifmt'];
+        $username = $row['username'];
         $name = $row['name'];
         $whatsapp = $row['whatsapp'];
         $contact = $row['contact'];
@@ -445,6 +446,23 @@ if (isset($_GET['read'])) {
                   </div>
                 </div>
                 <div class="tab-pane fade " id="send_message">
+                  <div class="aa-product-review-area">
+                  <h4>Send Message</h4>
+                  <!-- review form -->
+                  <form action="send.php" method="POST" class="aa-review-form">
+                      <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea class="form-control" rows="3" name="message"></textarea>
+                      </div>
+                      <input type="hidden" name="username" value="<?php echo $username?>">
+                      <div class="form-group">
+                        <label for="name">Username</label>
+                        <input type="text" class="form-control" name="send_user" placeholder="Username">
+                      </div>
+
+                      <button name="send" type="submit" class="btn btn-default aa-review-submit">Send</button>
+                    </form>
+                  </div>
                   <p><?php echo $other_ifmt ?></p>
                 </div>
               </div>
