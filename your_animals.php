@@ -1,11 +1,13 @@
-<?php
+<?php 
 session_start();
-if(!$_SESSION['auth']) {
-  header('localtion: login.php');
-}
+
 $mysqli = new mysqli('localhost', 'root', '', 'fypweb') or die (mysqli_error($mysqli));
-$result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
-?>
+
+if (isset($_GET['read'])) {
+    $username = $_GET['read'];
+    $result = $mysqli->query("SELECT * FROM animals WHERE username LIKE '$username'")
+    or die ($mysqli->error);
+}?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,8 +89,8 @@ $result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
                 <ul class="aa-head-top-nav-right">
                   <li><a href="login.html">Login</a></li>
                   <li><a href="create.html">Create animals</a></li>
-                  <li class="hidden-xs"><a href="your_animals.php">Your animals</a></li>
-                  <li class="hidden-xs"><a href="message.php">Message</a></li>
+                  <li class="hidden-xs"><a href="your_animals.php?read=<?php echo $username; ?>">Your animals</a></li>
+                  <li class="hidden-xs"><a href="message.php?read=<?php echo $username; ?>">Message</a></li>
                   <li class="hidden-xs"><a href="logout.php">Logout</a></li>
                 </ul>
               </div>

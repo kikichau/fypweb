@@ -2,27 +2,12 @@
 session_start();
 
 $mysqli = new mysqli('localhost', 'root', '', 'fypweb') or die (mysqli_error($mysqli));
-$data = '';
 
 if (isset($_GET['read'])) {
-    $id = $_GET['read'];
-    $result = $mysqli->query("SELECT * FROM animals WHERE id=$id") or die ($mysqli->error());
-        $row = $result->fetch_array();
-        $date = $row['date'];
-        $name_title = $row['name_title'];
-        $type = $row['type'];
-        $species = $row['species'];
-        $gender = $row['gender'];
-        $age = $row['age'];
-        $basic_ifmt = $row['basic_ifmt'];
-        $other_ifmt = $row['other_ifmt'];
-        $username = $row['username'];
-        $name = $row['name'];
-        $whatsapp = $row['whatsapp'];
-        $contact = $row['contact'];
-        $email = $row['email'];
-}
-?>
+    $username = $_GET['read'];
+    $result = $mysqli->query("SELECT * FROM message WHERE username LIKE '$username'")
+    or die ($mysqli->error);
+}?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +16,7 @@ if (isset($_GET['read'])) {
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Animals LOVE | Animal Detail Page</title>
+  <title>Animals LOVE | Message Page</title>
 
   <!-- Font awesome -->
   <link href="css/font-awesome.css" rel="stylesheet">
@@ -207,10 +192,10 @@ if (isset($_GET['read'])) {
     <div class="aa-catg-head-banner-area">
       <div class="container">
         <div class="aa-catg-head-banner-content">
-          <h2>Animal Detail Page</h2>
+          <h2>Message Page</h2>
           <ol class="breadcrumb">
             <li><a href="index.php">Home</a></li>
-            <li class="active">Animal Detail</li>
+            <li class="active">Message</li>
           </ol>
         </div>
       </div>
@@ -224,92 +209,50 @@ if (isset($_GET['read'])) {
       <div class="row">
         <div class="col-md-12">
           <div class="aa-product-details-area">
-            <div class="aa-product-details-content">
-              <div class="row">
-                <!-- Modal view slider -->
-                <div class="col-md-5 col-sm-5 col-xs-12">
-                  <div class="aa-product-view-slider">
-                    <div id="demo-1" class="simpleLens-gallery-container">
-                      <div class="simpleLens-container">
-                        <div class="simpleLens-big-image-container"><a
-                            data-lens-image="img/view-slider/large/polo-shirt-1.jpg" class="simpleLens-lens-image"><img
-                              src="img/view-slider/medium/polo-shirt-1.jpg" class="simpleLens-big-image"></a></div>
-                      </div>
-                      <div class="simpleLens-thumbnails-container">
-                        <a data-big-image="img/view-slider/medium/polo-shirt-1.jpg"
-                          data-lens-image="img/view-slider/large/polo-shirt-1.jpg" class="simpleLens-thumbnail-wrapper"
-                          href="#">
-                          <img src="img/view-slider/thumbnail/polo-shirt-1.jpg">
-                        </a>
-                        <a data-big-image="img/view-slider/medium/polo-shirt-3.jpg"
-                          data-lens-image="img/view-slider/large/polo-shirt-3.jpg" class="simpleLens-thumbnail-wrapper"
-                          href="#">
-                          <img src="img/view-slider/thumbnail/polo-shirt-3.jpg">
-                        </a>
-                        <a data-big-image="img/view-slider/medium/polo-shirt-4.jpg"
-                          data-lens-image="img/view-slider/large/polo-shirt-4.jpg" class="simpleLens-thumbnail-wrapper"
-                          href="#">
-                          <img src="img/view-slider/thumbnail/polo-shirt-4.jpg">
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Modal view content -->
-                <div class="col-md-7 col-sm-7 col-xs-12">
-                  <div class="aa-product-view-content">
-                    <h3><?php echo $name_title ?></h3>
-                    <br>
-                    <p><b>Posting Date: </b><?php echo $date ?></p>
-                    <br>
-                    <p><b>Name / Title: </b><?php echo $name_title ?></p>
-                    <br>
-                    <p><b>Species: </b><?php echo $species ?></p>
-                    <br>
-                    <p><b>Gender: </b><?php echo $gender ?></p>
-                    <br>
-                    <p><b>Age: </b><?php echo $age ?></p>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="aa-product-details-bottom">
               <ul class="nav nav-tabs" id="myTab2">
-                <li><a href="#basic_ifmt" data-toggle="tab">Basic Information</a></li>
-                <li><a href="#other_ifmt" data-toggle="tab">Other Information</a></li>
-                <li><a href="#contact_ifmt" data-toggle="tab">Contact Information</a></li>
+                <li><a href="#message" data-toggle="tab">Message</a></li>
                 <li><a href="#send_message" data-toggle="tab">Send Message</a></li>
               </ul>
 
               <!-- Tab panes -->
               <div class="tab-content">
-                <div class="tab-pane fade in active" id="basic_ifmt">
-                  <p><?php echo $basic_ifmt ?></p>
-                </div>
-                <div class="tab-pane fade " id="other_ifmt">
-                  <p><?php echo $other_ifmt ?></p>
-                </div>
-                <div class="tab-pane fade " id="contact_ifmt">
+                <div class="tab-pane fade in active" id="message">
                   <div class="aa-product-review-area">
-                    <p><b>Name: </b><?php echo $name ?></p>
-                    <br>
-                    <p><b>Whatsapp No. : </b><?php echo $whatsapp ?></p>
-                    <br>
-                    <p><b>Contact No. : </b><?php echo $contact ?></p>
-                    <br>
-                    <p><b>Email: </b><?php echo $email ?></p>
+                    <ul class="aa-review-nav">
+                      <?php
+                while ($row = $result->fetch_assoc()):
+                ?>
+                      <li>
+                        <div class="media">
+                          <div class="media-left">
+                            <a href="#">
+                              <img class="media-object" src="img/testimonial-img-3.jpg" alt="girl image">
+                            </a>
+                          </div>
+                          <div class="media-body">
+                            <h4 class="media-heading"><strong><?php echo $row['send_user']; ?></strong></h4>
+                            <p><?php echo $row['message']; ?></p>
+                          </div>
+                        </div>
+                      </li>
+                      <?php endwhile; ?>
+                    </ul>
                   </div>
                 </div>
                 <div class="tab-pane fade " id="send_message">
                   <div class="aa-product-review-area">
-                  <h4>Send Message</h4>
-                  <!-- review form -->
-                  <form action="send.php" method="POST" class="aa-review-form">
+                    <h4>Send Message</h4>
+                    <!-- review form -->
+                    <form action="send.php" method="POST" class="aa-review-form">
                       <div class="form-group">
                         <label for="message">Your Message</label>
                         <textarea class="form-control" rows="3" name="message"></textarea>
                       </div>
-                      <input type="hidden" name="username" value="<?php echo $username?>">
+                      <div class="form-group">
+                        <label for="name">Send To</label>
+                        <input type="text" class="form-control" name="username" placeholder="Username">
+                      </div>
                       <div class="form-group">
                         <label for="name">Username</label>
                         <input type="text" class="form-control" name="send_user" placeholder="Username">
@@ -464,6 +407,7 @@ if (isset($_GET['read'])) {
   <script type="text/javascript" src="js/google_translate.js"></script>
 
 </body>
+
 </html>
 <?php 
 function pre_r($arrar) {
