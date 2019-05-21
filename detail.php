@@ -413,10 +413,6 @@ if (isset($_GET['read'])) {
                     <p><b>Gender: </b><?php echo $gender ?></p>
                     <br>
                     <p><b>Age: </b><?php echo $age ?></p>
-                    <br>
-                    <div class="aa-prod-view-bottom">
-                      <a class="aa-add-to-cart-btn" href="#">Wishlist</a>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -426,6 +422,7 @@ if (isset($_GET['read'])) {
                 <li><a href="#basic_ifmt" data-toggle="tab">Basic Information</a></li>
                 <li><a href="#other_ifmt" data-toggle="tab">Other Information</a></li>
                 <li><a href="#contact_ifmt" data-toggle="tab">Contact Information</a></li>
+                <li><a href="#send_message" data-toggle="tab">Send Message</a></li>
               </ul>
 
               <!-- Tab panes -->
@@ -446,6 +443,9 @@ if (isset($_GET['read'])) {
                     <br>
                     <p><b>Email: </b><?php echo $email ?></p>
                   </div>
+                </div>
+                <div class="tab-pane fade " id="send_message">
+                  <p><?php echo $other_ifmt ?></p>
                 </div>
               </div>
             </div>
