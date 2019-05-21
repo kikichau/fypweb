@@ -14,7 +14,7 @@ if($_POST) {
   if(mysqli_num_rows($result)==1) {
     session_start();
     $_SESSION['fypweb'] = 'true';
-    header('location: index.html');
+    header('location: index.php');
   } else {
     header('location: error_user.html');
   }
