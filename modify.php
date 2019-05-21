@@ -2,10 +2,10 @@
 session_start();
 
 $mysqli = new mysqli('localhost', 'root', '', 'fypweb') or die (mysqli_error($mysqli));
-$data = '';
 
 if (isset($_GET['read'])) {
     $id = $_GET['read'];
+    $update = true;
     $result = $mysqli->query("SELECT * FROM animals WHERE id=$id") or die ($mysqli->error());
         $row = $result->fetch_array();
         $id = $row['id'];
@@ -31,7 +31,7 @@ if (isset($_GET['read'])) {
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Animals LOVE | Create Animals Page</title>
+  <title>Animals LOVE | Modify Animals Page</title>
 
   <!-- Font awesome -->
   <link href="css/font-awesome.css" rel="stylesheet">
@@ -93,49 +93,23 @@ if (isset($_GET['read'])) {
               <div class="aa-header-top-left">
                 <!-- start language -->
                 <div class="aa-language">
-                  <div class="dropdown">
-                    <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="true">
-                      <img src="img/flag/english.jpg" alt="english flag">ENGLISH
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <li><a href="#"><img src="img/flag/french.jpg" alt="">FRENCH</a></li>
-                      <li><a href="#"><img src="img/flag/english.jpg" alt="">ENGLISH</a></li>
-                    </ul>
-                  </div>
+                  <div id="google_translate_element"></div>
                 </div>
                 <!-- / language -->
-
-                <!-- start currency -->
-                <div class="aa-currency">
-                  <div class="dropdown">
-                    <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="true">
-                      <i class="fa fa-usd"></i>USD
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <li><a href="#"><i class="fa fa-euro"></i>EURO</a></li>
-                      <li><a href="#"><i class="fa fa-jpy"></i>YEN</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- / currency -->
                 <!-- start cellphone -->
                 <div class="cellphone hidden-xs">
-                  <p><span class="fa fa-phone"></span>00-62-658-658</p>
+                  <p><span class="fa fa-phone"></span>+852-6732-6697</p>
                 </div>
                 <!-- / cellphone -->
               </div>
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                  <li><a href="account.html">My Account</a></li>
-                  <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                  <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
-                  <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
-                  <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                  <li><a href="login.html">Login</a></li>
+                  <li><a href="create.html">Create animals</a></li>
+                  <li class="hidden-xs"><a href="your_animals.php">Your animals</a></li>
+                  <li class="hidden-xs"><a href="checkout.html">Message</a></li>
+                  <li class="hidden-xs"><a href="logout.php">Logout</a></li>
                 </ul>
               </div>
             </div>
@@ -154,56 +128,18 @@ if (isset($_GET['read'])) {
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="index.php">
                   <span class="fa fa-shopping-cart"></span>
-                  <p>daily<strong>Shop</strong> <span>Your Shopping Partner</span></p>
+                  <p>Animals<strong>LOVE</strong> <span>Your Animals Home</span></p>
                 </a>
                 <!-- img based logo -->
-                <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
+                <!-- <a href="index.php"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
               <!-- / logo  -->
-              <!-- cart box -->
-              <div class="aa-cartbox">
-                <a class="aa-cart-link" href="#">
-                  <span class="fa fa-shopping-basket"></span>
-                  <span class="aa-cart-title">SHOPPING CART</span>
-                  <span class="aa-cart-notify">2</span>
-                </a>
-                <div class="aa-cartbox-summary">
-                  <ul>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-1.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>
-                    <li>
-                      <span class="aa-cartbox-total-title">
-                        Total
-                      </span>
-                      <span class="aa-cartbox-total-price">
-                        $500
-                      </span>
-                    </li>
-                  </ul>
-                  <a class="aa-cartbox-checkout aa-primary-btn" href="#">Checkout</a>
-                </div>
-              </div>
-              <!-- / cart box -->
               <!-- search box -->
               <div class="aa-search-box">
-                <form action="">
-                  <input type="text" name="" id="" placeholder="Search here ex. 'man' ">
+                <form action="search.php" method="post">
+                  <input type="text" name="valueToSearch" id="valueToSearch" placeholder="Search here ex. 'cat' ">
                   <button type="submit"><span class="fa fa-search"></span></button>
                 </form>
               </div>
@@ -216,6 +152,7 @@ if (isset($_GET['read'])) {
     <!-- / header bottom  -->
   </header>
   <!-- / header section -->
+  
   <!-- menu -->
   <section id="menu">
     <div class="container">
@@ -233,119 +170,38 @@ if (isset($_GET['read'])) {
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="#">Men <span class="caret"></span></a>
+              <li><a href="index.php">Animals LOVE</a></li>
+              <li><a href="#">Dog <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Casual</a></li>
-                  <li><a href="#">Sports</a></li>
-                  <li><a href="#">Formal</a></li>
-                  <li><a href="#">Standard</a></li>
-                  <li><a href="#">T-Shirts</a></li>
-                  <li><a href="#">Shirts</a></li>
-                  <li><a href="#">Jeans</a></li>
-                  <li><a href="#">Trousers</a></li>
-                  <li><a href="#">And more.. <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Sleep Wear</a></li>
-                      <li><a href="#">Sandals</a></li>
-                      <li><a href="#">Loafers</a></li>
-                    </ul>
-                  </li>
+                  <li><a href="#">Siberian</a></li>
+                  <li><a href="#">Dachshund</a></li>
+                  <li><a href="#">Australian Shepherd</a></li>
+                  <li><a href="#">Shih Tzu</a></li>
+                  <li><a href="#">Alaskan</a></li>
+                  <li><a href="#">Irish wolfhound</a></li>
+                  <li><a href="#">Other</a></li>
                 </ul>
               </li>
-              <li><a href="#">Women <span class="caret"></span></a>
+              <li><a href="#">Cat <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Kurta & Kurti</a></li>
-                  <li><a href="#">Trousers</a></li>
-                  <li><a href="#">Casual</a></li>
-                  <li><a href="#">Sports</a></li>
-                  <li><a href="#">Formal</a></li>
-                  <li><a href="#">Sarees</a></li>
-                  <li><a href="#">Shoes</a></li>
-                  <li><a href="#">And more.. <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Sleep Wear</a></li>
-                      <li><a href="#">Sandals</a></li>
-                      <li><a href="#">Loafers</a></li>
-                      <li><a href="#">And more.. <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Rings</a></li>
-                          <li><a href="#">Earrings</a></li>
-                          <li><a href="#">Jewellery Sets</a></li>
-                          <li><a href="#">Lockets</a></li>
-                          <li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
-                          <li><a href="#">Jeans</a></li>
-                          <li><a href="#">Polo T-Shirts</a></li>
-                          <li><a href="#">SKirts</a></li>
-                          <li><a href="#">Jackets</a></li>
-                          <li><a href="#">Tops</a></li>
-                          <li><a href="#">Make Up</a></li>
-                          <li><a href="#">Hair Care</a></li>
-                          <li><a href="#">Perfumes</a></li>
-                          <li><a href="#">Skin Care</a></li>
-                          <li><a href="#">Hand Bags</a></li>
-                          <li><a href="#">Single Bags</a></li>
-                          <li><a href="#">Travel Bags</a></li>
-                          <li><a href="#">Wallets & Belts</a></li>
-                          <li><a href="#">Sunglases</a></li>
-                          <li><a href="#">Nail</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
+                  <li><a href="#">Russian Blue</a></li>
+                  <li><a href="#">Persian cat</a></li>
+                  <li><a href="#">Scottish Fold</a></li>
+                  <li><a href="#">Siamese cat</a></li>
+                  <li><a href="#">Ragdoll</a></li>
+                  <li><a href="#">Maina Coon</a></li>
+                  <li><a href="#">Other</a></li>
                 </ul>
               </li>
-              <li><a href="#">Kids <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Casual</a></li>
-                  <li><a href="#">Sports</a></li>
-                  <li><a href="#">Formal</a></li>
-                  <li><a href="#">Standard</a></li>
-                  <li><a href="#">T-Shirts</a></li>
-                  <li><a href="#">Shirts</a></li>
-                  <li><a href="#">Jeans</a></li>
-                  <li><a href="#">Trousers</a></li>
-                  <li><a href="#">And more.. <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Sleep Wear</a></li>
-                      <li><a href="#">Sandals</a></li>
-                      <li><a href="#">Loafers</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="#">Sports</a></li>
-              <li><a href="#">Digital <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Camera</a></li>
-                  <li><a href="#">Mobile</a></li>
-                  <li><a href="#">Tablet</a></li>
-                  <li><a href="#">Laptop</a></li>
-                  <li><a href="#">Accesories</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Furniture</a></li>
-              <li><a href="blog-archive.html">Blog <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="blog-archive.html">Blog Style 1</a></li>
-                  <li><a href="blog-archive-2.html">Blog Style 2</a></li>
-                  <li><a href="blog-single.html">Blog Single</a></li>
-                </ul>
-              </li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="#">Pages <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="product.html">Shop Page</a></li>
-                  <li><a href="product-detail.html">Shop Single</a></li>
-                  <li><a href="404.html">404 Page</a></li>
-                </ul>
-              </li>
+              <li><a href="#">Rabbit</a></li>
+              <li><a href="#">Rodents</a></li>
+              <li><a href="#">Tortoise</span></a></li>
+              <li><a href="#">Other</a></li>
             </ul>
           </div>
           <!--/.nav-collapse -->
         </div>
       </div>
-    </div>
     </div>
   </section>
   <!-- / menu -->
@@ -356,10 +212,10 @@ if (isset($_GET['read'])) {
     <div class="aa-catg-head-banner-area">
       <div class="container">
         <div class="aa-catg-head-banner-content">
-          <h2>Create Animal Page</h2>
+          <h2>Modify Animal Page</h2>
           <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li class="active">Create Animals</li>
+            <li><a href="index.php">Home</a></li>
+            <li class="active">Modify Animals</li>
           </ol>
         </div>
       </div>
@@ -373,11 +229,12 @@ if (isset($_GET['read'])) {
       <div class="row">
         <div class="col-md-12">
           <div class="checkout-area">
-            <form action="update.php" method="POST">
+            <form action="test.php?update=<?php echo $id?>" method="POST">
+            <input type="hidden" name="id">
               <div class="row">
                 <div class="col-md-8">
                   <div class="checkout-left">
-                    <div class="panel-group" id="accordion">
+                    <div class="panel-group" id="accordion" value="<?php echo $id; ?>">
                       <!-- Animal Information -->
                       <div class="panel panel-default aa-checkout-billaddress">
                         <div class="panel-heading">
@@ -549,7 +406,7 @@ if (isset($_GET['read'])) {
                     <div class="aa-payment-method">
                       Select image to upload:
                       <input type="file" name="picture" id="picture">
-                      <input name="submit" type="submit" value="Update" class="aa-browse-btn">
+                      <input name="update" type="submit" value="Update" class="aa-browse-btn">
                     </div>
                   </div>
                 </div>
@@ -575,11 +432,10 @@ if (isset($_GET['read'])) {
                   <div class="aa-footer-widget">
                     <h3>Main Menu</h3>
                     <ul class="aa-footer-nav">
-                      <li><a href="#">Home</a></li>
-                      <li><a href="#">Our Services</a></li>
-                      <li><a href="#">Our Products</a></li>
-                      <li><a href="#">About Us</a></li>
-                      <li><a href="#">Contact Us</a></li>
+                      <li><a href="index.php">Home</a></li>
+                      <li><a href="create.html">Create animals</a></li>
+                      <li><a href="terms.html">Terms And Privacy</a></li>
+                      <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                   </div>
                 </div>
@@ -588,11 +444,11 @@ if (isset($_GET['read'])) {
                     <div class="aa-footer-widget">
                       <h3>Knowledge Base</h3>
                       <ul class="aa-footer-nav">
-                        <li><a href="#">Delivery</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Discount</a></li>
-                        <li><a href="#">Special Offer</a></li>
+                        <li><a href="https://www.spca.org.hk/en/">SPCA</a></li>
+                        <li><a href="http://www.mongrelclub.hk/Welcome-To-Mongrel-Club-Website/">Mongrel Club</a></li>
+                        <li><a href="https://hongkongdogrescue.com/">HKDR</a></li>
+                        <li><a href="http://www.hkherp.org/">HKHerp</a></li>
+                        <li><a href="http://www.catsocietyhk.org/">Cat Society HK</a></li>
                       </ul>
                     </div>
                   </div>
@@ -602,11 +458,9 @@ if (isset($_GET['read'])) {
                     <div class="aa-footer-widget">
                       <h3>Useful Links</h3>
                       <ul class="aa-footer-nav">
-                        <li><a href="#">Site Map</a></li>
-                        <li><a href="#">Search</a></li>
-                        <li><a href="#">Advanced Search</a></li>
-                        <li><a href="#">Suppliers</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="https://www.google.com.hk/webhp?tab=lw">Google Search</a></li>
+                        <li><a href="https://www.google.com.hk/maps/@22.2822262,114.2331057,15z?hl=en">Site Map</a></li>
+                        <li><a href="https://translate.google.com.hk/?hl=en&tab=lT">Google Translate</a></li>
                       </ul>
                     </div>
                   </div>
@@ -617,8 +471,8 @@ if (isset($_GET['read'])) {
                       <h3>Contact Us</h3>
                       <address>
                         <p> 25 Astor Pl, NY 10003, USA</p>
-                        <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
-                        <p><span class="fa fa-envelope"></span>dailyshop@gmail.com</p>
+                        <p><span class="fa fa-phone"></span>+852-6732-6697</p>
+                        <p><span class="fa fa-envelope"></span>kikichau03@gmail.com</p>
                       </address>
                       <div class="aa-footer-social">
                         <a href="#"><span class="fa fa-facebook"></span></a>
@@ -641,7 +495,7 @@ if (isset($_GET['read'])) {
         <div class="row">
           <div class="col-md-12">
             <div class="aa-footer-bottom-area">
-              <p>Designed by <a href="http://www.markups.io/">MarkUps.io</a></p>
+              <p>Designed by <a href="https://www.instagram.com/kiki_kkcwk311/">Wing Ki Chau</a></p>
               <div class="aa-footer-payment">
                 <span class="fa fa-cc-mastercard"></span>
                 <span class="fa fa-cc-visa"></span>
@@ -655,30 +509,6 @@ if (isset($_GET['read'])) {
     </div>
   </footer>
   <!-- / footer -->
-  <!-- Login Modal -->
-  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4>Login or Register</h4>
-          <form class="aa-login-form" action="">
-            <label for="">Username or Email address<span>*</span></label>
-            <input type="text" placeholder="Username or email">
-            <label for="">Password<span>*</span></label>
-            <input type="password" placeholder="Password">
-            <button class="aa-browse-btn" type="submit">Login</button>
-            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
-            <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
-            <div class="aa-register-now">
-              Don't have an account?<a href="account.html">Register now!</a>
-            </div>
-          </form>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div>
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -700,6 +530,10 @@ if (isset($_GET['read'])) {
   <script type="text/javascript" src="js/nouislider.js"></script>
   <!-- Custom js -->
   <script src="js/custom.js"></script>
+  <!-- Traanslate js -->
+  <script type="text/javascript"
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script type="text/javascript" src="js/google_translate.js"></script>
 </body>
 
 </html>

@@ -85,7 +85,6 @@ $result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
                   <li><a href="login.html">Login</a></li>
                   <li><a href="create.html">Create animals</a></li>
                   <li class="hidden-xs"><a href="your_animals.php">Your animals</a></li>
-                  <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
                   <li class="hidden-xs"><a href="checkout.html">Message</a></li>
                   <li class="hidden-xs"><a href="logout.php">Logout</a></li>
                 </ul>
@@ -106,18 +105,18 @@ $result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="index.php">
                   <span class="fa fa-shopping-cart"></span>
                   <p>Animals<strong>LOVE</strong> <span>Your Animals Home</span></p>
                 </a>
                 <!-- img based logo -->
-                <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
+                <!-- <a href="index.php"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
               <!-- / logo  -->
               <!-- search box -->
               <div class="aa-search-box">
-                <form action="">
-                  <input type="text" name="" id="" placeholder="Search here ex. 'cat' ">
+                <form action="search.php" method="post">
+                  <input type="text" name="valueToSearch" id="valueToSearch" placeholder="Search here ex. 'cat' ">
                   <button type="submit"><span class="fa fa-search"></span></button>
                 </form>
               </div>
@@ -147,7 +146,7 @@ $result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="index.html">Animals LOVE</a></li>
+              <li><a href="index.php">Animals LOVE</a></li>
               <li><a href="#">Dog <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Siberian</a></li>
@@ -271,10 +270,14 @@ $result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
                         while ($row = $result->fetch_assoc()): ?>
                       <li>
                         <figure>
-                          <a class="aa-product-img" href="#"><img src="img/man/polo-shirt-1.png" alt="animal_img"></a>
-                          <a class="aa-add-card-btn" href="#"><?php echo $row['species']; ?></a>
+                          <a class="aa-product-img" href="detail.php?read=<?php echo $row['id']; ?>"><img
+                              src="img/man/polo-shirt-1.png" alt="animal_img"></a>
+                          <a class="aa-add-card-btn"
+                            href="detail.php?read=<?php echo $row['id']; ?>"><?php echo $row['species']; ?></a>
                           <figcaption>
-                            <h4 class="aa-product-title"><a href="#"><?php echo $row['name_title']; ?></a></h4>
+                            <h4 class="aa-product-title"><a
+                                href="detail.php?read=<?php echo $row['id']; ?>"><?php echo $row['name_title']; ?></a>
+                            </h4>
                             <span class="aa-product-price"><?php echo $row['gender']; ?></span>
                             <span class="aa-product-price"><?php echo $row['age']; ?></span>
                           </figcaption>
@@ -282,10 +285,6 @@ $result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
                         <div class="aa-product-hvr-content">
                           <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span
                               class="fa fa-heart-o"></span></a>
-                          <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span
-                              class="fa fa-exchange"></span></a>
-                          <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal"
-                            data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
                         </div>
                       </li>
                       <?php endwhile; ?>
@@ -310,12 +309,14 @@ $result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
           <div class="aa-client-brand-area">
             <ul class="aa-client-brand-slider">
               <li><a href="https://www.spca.org.hk/en/"><img src="img/HKSPCA.png" alt="spca img"></a></li>
-              <li><a href="http://www.mongrelclub.hk/Welcome-To-Mongrel-Club-Website/"><img src="img/mrc.jpg" alt="mrc img"></a></li>
+              <li><a href="http://www.mongrelclub.hk/Welcome-To-Mongrel-Club-Website/"><img src="img/mrc.jpg"
+                    alt="mrc img"></a></li>
               <li><a href="https://hongkongdogrescue.com/"><img src="img/HKDR.png" alt="hkdr img"></a></li>
               <li><a href="http://www.hkherp.org/"><img src="img/HKHerp.jpg" alt="hkherp img"></a></li>
               <li><a href="http://www.catsocietyhk.org/"><img src="img/cat.jpg" alt="cat img"></a></li>
               <li><a href="https://www.spca.org.hk/en/"><img src="img/HKSPCA.png" alt="spca img"></a></li>
-              <li><a href="http://www.mongrelclub.hk/Welcome-To-Mongrel-Club-Website/"><img src="img/mrc.jpg" alt="mrc img"></a></li>
+              <li><a href="http://www.mongrelclub.hk/Welcome-To-Mongrel-Club-Website/"><img src="img/mrc.jpg"
+                    alt="mrc img"></a></li>
               <li><a href="https://hongkongdogrescue.com/"><img src="img/HKDR.png" alt="hkdr img"></a></li>
               <li><a href="http://www.hkherp.org/"><img src="img/HKHerp.jpg" alt="hkherp img"></a></li>
               <li><a href="http://www.catsocietyhk.org/"><img src="img/cat.jpg" alt="cat img"></a></li>
@@ -334,7 +335,7 @@ $result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
         <div class="col-md-12">
           <div class="aa-subscribe-area">
             <h3>Subscribe our newsletter </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, velit!</p>
+            <p>If you want to know the latest news, please subscribe!</p>
             <form action="" class="aa-subscribe-form">
               <input type="email" name="" id="" placeholder="Enter your Email">
               <input type="submit" value="Subscribe">
@@ -361,7 +362,7 @@ $result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
                     <ul class="aa-footer-nav">
                       <li><a href="index.php">Home</a></li>
                       <li><a href="create.html">Create animals</a></li>
-                      <li><a href="#">Terms And Privacy</a></li>
+                      <li><a href="terms.html">Terms And Privacy</a></li>
                       <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                   </div>
