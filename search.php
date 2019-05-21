@@ -97,7 +97,7 @@ function filterTable($query) {
                   <li><a href="create.html">Create animals</a></li>
                   <li class="hidden-xs"><a href="your_animals.php">Your animals</a></li>
                   <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                  <li class="hidden-xs"><a href="checkout.html">Message</a></li>
+                  <li class="hidden-xs"><a href="message.php">Message</a></li>
                   <li class="hidden-xs"><a href="logout.php">Logout</a></li>
                 </ul>
               </div>
@@ -117,7 +117,7 @@ function filterTable($query) {
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="index.php">
                   <span class="fa fa-shopping-cart"></span>
                   <p>Animals<strong>LOVE</strong> <span>Your Animals Home</span></p>
                 </a>
@@ -158,7 +158,7 @@ function filterTable($query) {
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="index.html">Animals LOVE</a></li>
+              <li><a href="index.php">Animals LOVE</a></li>
               <li><a href="#">Dog <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Siberian</a></li>
