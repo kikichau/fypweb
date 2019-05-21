@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
 		$stmt->store_result(); 
 		if($stmt->fetch()) //fetching the contents of the row { 
 			$_SESSION['login_user'] = $username; // Initializing Session 
-		header("location: index.php"); // Redirecting To Profile Page 
+		header("location: index_login.php"); // Redirecting To Profile Page 
 	} 
 	mysqli_close($conn); // Closing Connection 
 } 

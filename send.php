@@ -9,6 +9,6 @@ if (isset($_POST['send'])) {
     $mysqli->query("INSERT INTO message (send_user, username, message) VALUES ('$send_user', '$username', '$message')")
     or die ($mysqli->error);
 
-    header('location: index.php');
+    header('location: index_login.php');
 }
 ?>

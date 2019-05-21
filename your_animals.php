@@ -122,7 +122,7 @@ if (isset($_GET['read'])) {
             <div class="navbar-collapse collapse">
               <!-- Left nav -->
               <ul class="nav navbar-nav">
-                <li><a href="index.php">Animals LOVE</a></li>
+                <li><a href="index_login.php">Animals LOVE</a></li>
               <li><a href="search_list.php?read=Dog">Dog <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="search_list.php?read=Siberian">Siberian</a></li>
@@ -166,7 +166,7 @@ if (isset($_GET['read'])) {
           <div class="aa-catg-head-banner-content">
             <h2>Your Animals Page</h2>
             <ol class="breadcrumb">
-              <li><a href="index.php">Home</a></li>
+              <li><a href="index_login.php">Home</a></li>
               <li class="active">Your Animals</li>
             </ol>
           </div>
@@ -257,7 +257,7 @@ if (isset($_GET['read'])) {
                     <div class="aa-footer-widget">
                       <h3>Main Menu</h3>
                       <ul class="aa-footer-nav">
-                        <li><a href="index.php">Home</a></li>
+                        <li><a href="index_login.php">Home</a></li>
                         <li><a href="create.php">Create animals</a></li>
                         <li><a href="terms.html">Terms And Privacy</a></li>
                         <li><a href="contact.html">Contact Us</a></li>

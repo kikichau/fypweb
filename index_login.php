@@ -1,16 +1,12 @@
-<?php 
+<?php
+$mysqli = new mysqli('localhost', 'root', '', 'fypweb') or die (mysqli_error($mysqli));
+$result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
+
 include('session.php'); 
 if(!isset($_SESSION['login_user'])){ 
   header("location: login.html"); // Redirecting To Home Page 
 }
-
-$mysqli = new mysqli('localhost', 'root', '', 'fypweb') or die (mysqli_error($mysqli));
-
-if (isset($_GET['read'])) {
-    $search = $_GET['read'];
-    $result = $mysqli->query("SELECT * FROM `animals` WHERE CONCAT (`name_title`, `type`, `species`) LIKE '%".$search."%'")
-    or die ($mysqli->error);
-}?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,8 +121,8 @@ if (isset($_GET['read'])) {
               <!-- search box -->
               <div class="aa-search-box">
                 <form action="search_list.php" method="post">
-                  <input type="text" name="valueToSearch" id="valueToSearch" placeholder="Search here ex. 'cat' ">
-                  <button type="submit"><span class="fa fa-search"></span></button>
+                  <input type="text" name="?read" placeholder="Search here ex. 'cat' ">
+                  <button name="search" type="submit"><span class="fa fa-search"></span></button>
                 </form>
               </div>
               <!-- / search box -->

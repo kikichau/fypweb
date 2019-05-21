@@ -1,7 +1,7 @@
 <?php 
 include('session.php'); 
 if(!isset($_SESSION['login_user'])){ 
-  header("location: index.php"); // Redirecting To Home Page 
+  header("location: index_login.php"); // Redirecting To Home Page 
 }
 
 $mysqli = new mysqli('localhost', 'root', '', 'fypweb') or die (mysqli_error($mysqli));
@@ -131,12 +131,12 @@ if (isset($_GET['read'])) {
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.php">
+                <a href="index_login.php">
                   <span class="fa fa-shopping-cart"></span>
                   <p>Animals<strong>LOVE</strong> <span>Your Animals Home</span></p>
                 </a>
                 <!-- img based logo -->
-                <!-- <a href="index.php"><img src="img/logo.jpg" alt="logo img"></a> -->
+                <!-- <a href="index_login.php"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
               <!-- / logo  -->
               <!-- search box -->
@@ -173,7 +173,7 @@ if (isset($_GET['read'])) {
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="index.php">Animals LOVE</a></li>
+              <li><a href="index_login.php">Animals LOVE</a></li>
               <li><a href="search_list.php?read=Dog">Dog <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="search_list.php?read=Siberian">Siberian</a></li>
@@ -217,7 +217,7 @@ if (isset($_GET['read'])) {
         <div class="aa-catg-head-banner-content">
           <h2>Modify Animal Page</h2>
           <ol class="breadcrumb">
-            <li><a href="index.php">Home</a></li>
+            <li><a href="index_login.php">Home</a></li>
             <li class="active">Modify Animals</li>
           </ol>
         </div>
@@ -429,7 +429,7 @@ if (isset($_GET['read'])) {
                   <div class="aa-footer-widget">
                     <h3>Main Menu</h3>
                     <ul class="aa-footer-nav">
-                      <li><a href="index.php">Home</a></li>
+                      <li><a href="index_login.php">Home</a></li>
                       <li><a href="create.php">Create animals</a></li>
                       <li><a href="terms.html">Terms And Privacy</a></li>
                       <li><a href="contact.html">Contact Us</a></li>
