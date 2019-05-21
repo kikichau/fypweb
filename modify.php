@@ -229,8 +229,8 @@ if (isset($_GET['read'])) {
       <div class="row">
         <div class="col-md-12">
           <div class="checkout-area">
-            <form action="test.php?update=<?php echo $id?>" method="POST">
-            <input type="hidden" name="id">
+            <form action="update.php?update=<?php echo $id?>" method="POST">
+            <input type="hidden" name="id" value="<?php echo $id?>">
               <div class="row">
                 <div class="col-md-8">
                   <div class="checkout-left">
