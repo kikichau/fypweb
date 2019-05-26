@@ -84,8 +84,8 @@ $result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
                 <ul class="aa-head-top-nav-right">
                   <li><a href="login.html">Login</a></li>
                   <li><a href="create.php">Create animals</a></li>
-                  <li class="hidden-xs"><a href="your_animals.php?read=<?php echo $login_session; ?>">Your animals</a></li>
-                  <li class="hidden-xs"><a href="message.php?read=<?php echo $login_session; ?>">Message</a></li>
+                  <li class="hidden-xs"><a href="your_animals.php?read=">Your animals</a></li>
+                  <li class="hidden-xs"><a href="message.php?read=">Message</a></li>
                   <li class="hidden-xs"><a href="logout.php">Logout</a></li>
                 </ul>
               </div>
@@ -271,7 +271,7 @@ $result = $mysqli->query("SELECT * FROM animals") or die ($mysqli->error);
                       <li>
                         <figure>
                           <a class="aa-product-img" href="detail.php?read=<?php echo $row['id']; ?>"><img
-                              src="img/man/polo-shirt-1.png" alt="animal_img"></a>
+                              src="img/view-slider/medium/polo-shirt-1.jpg" alt="animal_img"></a>
                           <a class="aa-add-card-btn"
                             href="detail.php?read=<?php echo $row['id']; ?>"><?php echo $row['species']; ?></a>
                           <figcaption>

@@ -280,7 +280,7 @@ if (isset($_GET['read'])) {
                       <li>
                         <figure>
                           <a class="aa-product-img" href="detail.php?read=<?php echo $row['id']; ?>"><img
-                              src="img/man/polo-shirt-1.png" alt="animal_img"></a>
+                              src="img/view-slider/medium/polo-shirt-1.jpg" alt="animal_img"></a>
                           <a class="aa-add-card-btn"
                             href="detail.php?read=<?php echo $row['id']; ?>"><?php echo $row['species']; ?></a>
                           <figcaption>
